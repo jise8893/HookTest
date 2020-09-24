@@ -1,2 +1,5 @@
 ﻿  monitor.cpp
+C:\Users\kkura\source\repos\Project17\monitor.cpp(31,11): warning C4477: 'printf' : 서식 문자열 '%S'에 'wchar_t *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'wchar_t **'입니다.
+C:\Users\kkura\source\repos\Project17\monitor.cpp(31,11): warning C4477: 'printf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 2의 형식이 'char **'입니다.
+C:\Users\kkura\source\repos\Project17\monitor.cpp(22,11): warning C4101: 'buffer' :참조되지 않은 지역 변수입니다.
   Project17.vcxproj -> C:\Users\kkura\source\repos\Project17\x64\Debug\Project17.exe

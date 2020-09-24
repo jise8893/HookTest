@@ -1,3 +1,4 @@
+
 #include <Windows.h>
 #include <tchar.h>
 #include <stdio.h>
@@ -7,24 +8,35 @@
 #define OBJECT_NAME _T("Local\\INTERPRO")
 
 
+#pragma pack(1)
+typedef struct MMF
+{
+	wchar_t* buffer[MAX_PATH];
+	char* cbuffer[32];
+}MMF;
+
 int main()
 {
 	HANDLE hMapping;
-	wchar_t * buffer;
+	MMF* P;
+	wchar_t* buffer;
 	while (1) {
 		hMapping = OpenFileMapping(
 			FILE_MAP_READ | FILE_MAP_WRITE, FALSE, OBJECT_NAME);
-		buffer = (wchar_t*)MapViewOfFile(
+		P = (MMF*)MapViewOfFile(
 			hMapping,
 			PAGE_READONLY, 0, 0, 0);
-		if (buffer != NULL) {
-			printf("CALL %S\n", buffer);
-			UnmapViewOfFile(buffer);
-			CloseHandle(hMapping);
-		}
 		
+		if (P != NULL) {
+			printf("CALL %S : %s\n ", P->buffer,P->cbuffer);
+			Sleep(5);
+			UnmapViewOfFile(P);
+			CloseHandle(hMapping);
+			
+		}
+		Sleep(0);
 	}
 
-	
+
 	return 0;
 }
