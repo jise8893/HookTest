@@ -1,0 +1,7 @@
+﻿  monitor.cpp
+C:\Users\kkura\source\repos\Project17\monitor.cpp(15,9): warning C4477: 'printf' : 서식 문자열 '%s'에 'char *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'wchar_t *'입니다.
+C:\Users\kkura\source\repos\Project17\monitor.cpp(15,9): message : 서식 문자열에서 '%ls'을(를) 사용하는 것이 좋습니다.
+C:\Users\kkura\source\repos\Project17\monitor.cpp(15,9): message : 서식 문자열에서 '%lls'을(를) 사용하는 것이 좋습니다.
+C:\Users\kkura\source\repos\Project17\monitor.cpp(15,9): message : 서식 문자열에서 '%Ls'을(를) 사용하는 것이 좋습니다.
+C:\Users\kkura\source\repos\Project17\monitor.cpp(15,9): message : 서식 문자열에서 '%ws'을(를) 사용하는 것이 좋습니다.
+  Project17.vcxproj -> C:\Users\kkura\source\repos\Project17\Debug\Project17.exe
