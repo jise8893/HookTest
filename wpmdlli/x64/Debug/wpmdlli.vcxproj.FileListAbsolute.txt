@@ -1,0 +1,2 @@
+C:\Users\kkura\source\repos\wpmdlli\x64\Debug\wpmdlli.dll
+C:\Users\kkura\source\repos\wpmdlli\x64\Debug\wpmdlli.pdb
