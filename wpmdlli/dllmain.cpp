@@ -12,6 +12,11 @@
 #define PAGE_SIZE 0x1000
 
 #define OBJECT_NAME _T("Local\\INTERPRO")
+#pragma pack(1)
+DLLBASIC_API typedef struct MMF {
+    wchar_t buffer[MAX_PATH];
+    char cbuffer[32];
+}MMF;
 static LONG dwSlept = 0;
 
 
@@ -32,23 +37,28 @@ DLLBASIC_API BOOL WINAPI WPM_HOOK(HANDLE  hProcess,
     wchar_t* buffer;
     DWORD dwBeg = GetTickCount();
     BOOL ret = TrueWPM(hProcess,
-         lpBaseAddress,
-         lpBuffer,
-          nSize,
-         lpNumberOfBytesWritten);
+        lpBaseAddress,
+        lpBuffer,
+        nSize,
+        lpNumberOfBytesWritten);
     DWORD dwEnd = GetTickCount();
-   
+    MMF* P;
     HANDLE hMapping;
-    printf("WriteProcessMemory API is used\n");
+    
     hMapping = CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, PAGE_SIZE, OBJECT_NAME);
     buffer = (wchar_t*)MapViewOfFile(hMapping, PAGE_READONLY, 0, 0, 0);
-       
+    P = (MMF*)MapViewOfFile(hMapping, PAGE_READONLY, 0, 0, 0);
     if (GetModuleFileNameW(nullptr, buffer, MAX_PATH)) {
-        std::wcout << L"current process name: " << buffer << std::endl;
+        wcsncpy_s(P->buffer, MAX_PATH, buffer, MAX_PATH);
+        std::cout << "success! " << std::endl;
+        std::wcout << L"current process name: " << P->buffer << std::endl;
     }
-        InterlockedExchangeAdd(&dwSlept, dwEnd - dwBeg);
-        UnmapViewOfFile(buffer);
-        CloseHandle(hMapping);
+    
+    strncpy_s(P->cbuffer,32, "WriteProcessMemory API is used\n", 32);
+    std::cout << P->cbuffer << std::endl;
+    InterlockedExchangeAdd(&dwSlept, dwEnd - dwBeg);
+    UnmapViewOfFile(P);
+    CloseHandle(hMapping);
     return ret;
 }
 
