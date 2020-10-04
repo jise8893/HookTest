@@ -1,0 +1,2 @@
+C:\Users\kkura\source\repos\Dll11\x64\Debug\Dll11.dll
+C:\Users\kkura\source\repos\Dll11\x64\Debug\Dll11.pdb
